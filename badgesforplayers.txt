@@ -1,0 +1,12 @@
+{
+name:astromode;
+badge:1;
+}
+{
+name:michigun;
+badge:2;
+}
+{
+name:advystyles;
+badge:5;
+}

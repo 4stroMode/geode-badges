@@ -1,0 +1,17 @@
+{
+    "geode": "5.3.0",
+    "gd": {
+        "win": "2.2081"
+    },
+    "version": "v1.0.0",
+    "id": "4stromode.badges_for_players",
+    "name": "Badges For Players",
+    "developer": "4stromode",
+    "description": "Adds custom badges to prominent players in the Geometry Dash community.",
+    "repository": "",
+    "resources": {
+        "files": [
+            "resources/*.png"
+        ]
+    }
+}

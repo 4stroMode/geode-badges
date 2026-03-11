@@ -1,0 +1,11 @@
+build/
+.geode/
+*.geode
+*.lib
+*.pdb
+*.dll
+*.exe
+.vs/
+.vscode/
+CMakeSettings.json
+out/
