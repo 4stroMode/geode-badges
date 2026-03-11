@@ -8,7 +8,7 @@
     "name": "Badges For Players",
     "developer": "4stromode",
     "description": "Adds custom badges to prominent players in the Geometry Dash community.",
-    "repository": "",
+    "repository": "https://github.com/4stroMode/geode-badges",
     "resources": {
         "files": [
             "resources/*.png"
