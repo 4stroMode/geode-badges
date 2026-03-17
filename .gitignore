@@ -6,7 +6,7 @@ build_x64/
 *.pdb
 *.dll
 *.exe
-*.txt
+#*.txt
 .vs/
 .vscode/
 CMakeSettings.json
