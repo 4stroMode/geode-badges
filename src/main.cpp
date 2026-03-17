@@ -11,11 +11,11 @@
 
 using namespace geode::prelude;
 
-// Mapa global para guardar usuario -> id de insignia
+// mapping for usernames -> badge ids
 std::map<std::string, int> g_playerBadges;
 bool g_badgesLoaded = false;
 
-// Función para obtener el nombre de la textura según el ID
+// returns the texture name based on badge id
 std::string getBadgeTextureName(int badgeId) {
     switch (badgeId) {
         case 1:  return "ownerbadge";
@@ -127,27 +127,23 @@ class $modify(MyProfilePage, ProfilePage) {
 
             auto layer = m_mainLayer;
             if (auto username_menu = static_cast<CCMenu*>(layer->getChildByIDRecursive("username-menu"))) {
-                // Prevenir duplicados
+                // duplicate prevention
                 if (auto existingBadge = username_menu->getChildByID("custom-player-badge"_spr)) {
                     existingBadge->removeFromParent();
                 }
 
                 std::string textureName;
                 float factor = CCDirector::sharedDirector()->getContentScaleFactor();
-                // Reducimos muchísimo el ancho para que el icono encaje perfecto sin tapar el nombre
                 float targetWidth = 25.0f;
                 float finalScale = 1.0f;
                 
-                // Ajuste individual explícito para cada calidad de imagen tal y como se solicitó
+                // load textures based on quality factor
                 if (factor >= 4.0f) {
                     textureName = textureNameBase + "-uhd.png";
-                    // Para High (UHD)
                 } else if (factor >= 2.0f) {
                     textureName = textureNameBase + "-hd.png";
-                    // Para Medium (HD)
                 } else {
                     textureName = textureNameBase + ".png";
-                    // Para Low (SD)
                 }
 
                 std::string exactPath = fmt::format("{}/{}", Mod::get()->getID(), textureName);
@@ -161,8 +157,6 @@ class $modify(MyProfilePage, ProfilePage) {
                         this,
                         menu_selector(MyProfilePage::onCustomBadge)
                     );
-                    // IMPORTANTE: También escalamos el botón si no es suficiente escalar el sprite interior
-                    // badgeBtn->setScale(1.5f);  // Podríamos escalar el botón también si fuera necesario
                     
                     badgeBtn->setTag(badgeId);
                     badgeBtn->setID("custom-player-badge"_spr);
@@ -197,7 +191,7 @@ class $modify(MyCommentCell, CommentCell) {
 
             auto layer = m_mainLayer;
             if (auto username_menu = static_cast<CCMenu*>(layer->getChildByIDRecursive("username-menu"))) {
-                // Prevenir duplicados
+                // duplicate prevention
                 if (auto existingBadge = username_menu->getChildByID("custom-comment-badge"_spr)) {
                     existingBadge->removeFromParent();
                 }
@@ -207,7 +201,7 @@ class $modify(MyCommentCell, CommentCell) {
                 float targetWidth = 15.0f;
                 float finalScale = 1.0f;
                 
-                // Ajuste individual explícito para cada calidad en los comentarios
+                // load textures based on quality factor
                 if (factor >= 4.0f) {
                     textureName = textureNameBase + "-uhd.png";
                 } else if (factor >= 2.0f) {
@@ -230,11 +224,10 @@ class $modify(MyCommentCell, CommentCell) {
                     badgeBtn->setID("custom-comment-badge"_spr);
                     username_menu->addChild(badgeBtn);
                     
-                    username_menu->updateLayout();
                 }
             }
 
-            // Cambiar color del comentario si la insignia lo requiere
+            // apply custom comment colors if applicable
             ccColor3B commentColor = {255, 255, 255};
             bool shouldColor = false;
 
