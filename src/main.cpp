@@ -225,7 +225,7 @@ class $modify(MyCommentCell, CommentCell) {
                     badgeBtn->setTag(badgeId);
                     badgeBtn->setID("custom-comment-badge"_spr);
                     username_menu->addChild(badgeBtn);
-                    
+                    username_menu->updateLayout();
                 }
             }
 
