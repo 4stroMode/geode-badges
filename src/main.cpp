@@ -8,6 +8,8 @@
 #include <regex>
 #include <sstream>
 #include <thread>
+#include <algorithm>
+#include <cctype>
 
 using namespace geode::prelude;
 
